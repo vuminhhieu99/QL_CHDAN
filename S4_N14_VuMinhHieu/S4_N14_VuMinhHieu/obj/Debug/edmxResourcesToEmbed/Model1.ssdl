@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_Kho_CHDANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CungUng">
+    <Key>
+      <PropertyRef Name="MaHang" />
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaHang" Type="int" Nullable="false" />
+    <Property Name="MaNCC" Type="int" Nullable="false" />
+    <Property Name="GiaCungUng" Type="decimal" Precision="12" Scale="3" />
+    <Property Name="NgayCapNhatGia" Type="date" />
+    <Property Name="DangNhap" Type="bit" />
+  </EntityType>
+  <EntityType Name="DongPhieuNhap">
+    <Key>
+      <PropertyRef Name="MaDPN" />
+    </Key>
+    <Property Name="MaDPN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaPhieuNhap" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="DonGiaNhap" Type="decimal" Precision="10" Scale="3" />
+  </EntityType>
+  <EntityType Name="DongPhieuXuat">
+    <Key>
+      <PropertyRef Name="MaLo" />
+      <PropertyRef Name="MaPhieuXuat" />
+    </Key>
+    <Property Name="MaLo" Type="int" Nullable="false" />
+    <Property Name="MaPhieuXuat" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityType Name="LoaiHang">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoHang">
+    <Key>
+      <PropertyRef Name="MaLo" />
+    </Key>
+    <Property Name="MaLo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HSD" Type="date" />
+    <Property Name="TonKho" Type="int" />
+    <Property Name="MaHang" Type="int" />
+    <Property Name="MaDPN" Type="int" />
+  </EntityType>
+  <EntityType Name="MatHang">
+    <Key>
+      <PropertyRef Name="MaHang" />
+    </Key>
+    <Property Name="MaHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenHang" Type="nvarchar" MaxLength="500" />
+    <Property Name="DvTinh" Type="nvarchar" MaxLength="500" />
+    <Property Name="DonGia" Type="decimal" Precision="12" Scale="3" />
+    <Property Name="MaLoai" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNCC" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="60" />
+    <Property Name="GioiTinh" Type="bit" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="SDT" Type="char" MaxLength="11" />
+    <Property Name="CaLam" Type="ntext" />
+    <Property Name="Luong" Type="decimal" Precision="12" Scale="3" />
+    <Property Name="MaNguoiQL" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="PhieuNhap">
+    <Key>
+      <PropertyRef Name="MaPhieuNhap" />
+    </Key>
+    <Property Name="MaPhieuNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="MaNV" Type="tinyint" />
+    <Property Name="MaNCC" Type="int" />
+    <Property Name="NoPN" Type="decimal" Precision="16" Scale="3" />
+    <Property Name="TongTien" Type="decimal" Precision="16" Scale="3" />
+  </EntityType>
+  <EntityType Name="PhieuXuat">
+    <Key>
+      <PropertyRef Name="MaPhieuXuat" />
+    </Key>
+    <Property Name="MaPhieuXuat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="MaNV" Type="tinyint" />
+    <Property Name="TenNguoiNhan" Type="nvarchar" MaxLength="60" />
+    <Property Name="DiaChiKho" Type="nvarchar" MaxLength="500" />
+    <Property Name="TongTien" Type="decimal" Precision="16" Scale="3" />
+  </EntityType>
+  <Association Name="FK_CungUng_MaHang">
+    <End Role="MatHang" Type="Self.MatHang" Multiplicity="1" />
+    <End Role="CungUng" Type="Self.CungUng" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MatHang">
+        <PropertyRef Name="MaHang" />
+      </Principal>
+      <Dependent Role="CungUng">
+        <PropertyRef Name="MaHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CungUng_MaNCC">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="1" />
+    <End Role="CungUng" Type="Self.CungUng" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="CungUng">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DongPhieuNhap_MaPhieuNhap">
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="0..1" />
+    <End Role="DongPhieuNhap" Type="Self.DongPhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuNhap">
+        <PropertyRef Name="MaPhieuNhap" />
+      </Principal>
+      <Dependent Role="DongPhieuNhap">
+        <PropertyRef Name="MaPhieuNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DongPhieuXuat_MaLo">
+    <End Role="LoHang" Type="Self.LoHang" Multiplicity="1" />
+    <End Role="DongPhieuXuat" Type="Self.DongPhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoHang">
+        <PropertyRef Name="MaLo" />
+      </Principal>
+      <Dependent Role="DongPhieuXuat">
+        <PropertyRef Name="MaLo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DongPhieuXuat_MaPhieuXuat">
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="1" />
+    <End Role="DongPhieuXuat" Type="Self.DongPhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuXuat">
+        <PropertyRef Name="MaPhieuXuat" />
+      </Principal>
+      <Dependent Role="DongPhieuXuat">
+        <PropertyRef Name="MaPhieuXuat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoHang_DongPhieuNhap">
+    <End Role="DongPhieuNhap" Type="Self.DongPhieuNhap" Multiplicity="0..1" />
+    <End Role="LoHang" Type="Self.LoHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DongPhieuNhap">
+        <PropertyRef Name="MaDPN" />
+      </Principal>
+      <Dependent Role="LoHang">
+        <PropertyRef Name="MaDPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoHang_MaHang">
+    <End Role="MatHang" Type="Self.MatHang" Multiplicity="0..1" />
+    <End Role="LoHang" Type="Self.LoHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MatHang">
+        <PropertyRef Name="MaHang" />
+      </Principal>
+      <Dependent Role="LoHang">
+        <PropertyRef Name="MaHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MatHang_MaLoai">
+    <End Role="LoaiHang" Type="Self.LoaiHang" Multiplicity="0..1" />
+    <End Role="MatHang" Type="Self.MatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiHang">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="MatHang">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhanVien_MaNguoiQL">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="NhanVien1" Type="Self.NhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="NhanVien1">
+        <PropertyRef Name="MaNguoiQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhap_MaNCC">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="PhieuNhap">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhap_MaNV">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuNhap">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuXuat_MaNV">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuXuat">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="BaoCao_TonKho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ma_loai" Type="int" Mode="In" />
+    <Parameter Name="dau_ky" Type="date" Mode="In" />
+    <Parameter Name="cuoi_ky" Type="date" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MaHang" Type="int" />
+          <Property Name="TenHang" Type="nvarchar" MaxLength="500" />
+          <Property Name="MaLo" Type="int" />
+          <Property Name="SoLuong_DauKy" Type="int" />
+          <Property Name="ThanhTien_DauKy" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="SoLuong_NhapKho" Type="int" />
+          <Property Name="ThanhTien_NhapKho" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="SoLuong_XuatKho" Type="int" />
+          <Property Name="ThanhTien_XuatKho" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="SoLuong_CuoiKy" Type="int" />
+          <Property Name="ThanhTien_CuoiKy" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="HSD" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="ChenhLech_Gia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaHang" Type="int" Mode="In" />
+    <Parameter Name="Gia_CungUng_OP" Type="char" Mode="In" />
+  </Function>
+  <Function Name="DoanhThu_XuatHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="INSERT_DongPhieuNhap_LoHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maPhieuNhap" Type="int" Mode="In" />
+    <Parameter Name="SoLuong" Type="int" Mode="In" />
+    <Parameter Name="DonGiaNhap" Type="decimal" Mode="In" />
+    <Parameter Name="MaHang" Type="int" Mode="In" />
+    <Parameter Name="HSD" Type="date" Mode="In" />
+  </Function>
+  <Function Name="INSERT_DongPhieuXuat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLo" Type="int" Mode="In" />
+    <Parameter Name="maPhieuXuat" Type="int" Mode="In" />
+    <Parameter Name="soluong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="INSERT_NV_BaoCaoTonKho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenHang" Type="nvarchar" Mode="In" />
+    <Parameter Name="TenLoai" Type="nvarchar" Mode="In" />
+    <Parameter Name="SoLuongNhap" Type="int" Mode="In" />
+    <Parameter Name="DonGiaNhap" Type="decimal" Mode="In" />
+    <Parameter Name="HSD" Type="date" Mode="In" />
+  </Function>
+  <Function Name="INSERT_NV_DongPhieuXuat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLo" Type="int" Mode="In" />
+    <Parameter Name="maPhieuXuat" Type="int" Mode="In" />
+    <Parameter Name="soluong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ThongKe_TieuThu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+  </Function>
+  <EntityContainer Name="QL_Kho_CHDANModelStoreContainer">
+    <EntitySet Name="CungUng" EntityType="Self.CungUng" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DongPhieuNhap" EntityType="Self.DongPhieuNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DongPhieuXuat" EntityType="Self.DongPhieuXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiHang" EntityType="Self.LoaiHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoHang" EntityType="Self.LoHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MatHang" EntityType="Self.MatHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhaCungCap" EntityType="Self.NhaCungCap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuNhap" EntityType="Self.PhieuNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuXuat" EntityType="Self.PhieuXuat" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CungUng_MaHang" Association="Self.FK_CungUng_MaHang">
+      <End Role="MatHang" EntitySet="MatHang" />
+      <End Role="CungUng" EntitySet="CungUng" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CungUng_MaNCC" Association="Self.FK_CungUng_MaNCC">
+      <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+      <End Role="CungUng" EntitySet="CungUng" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DongPhieuNhap_MaPhieuNhap" Association="Self.FK_DongPhieuNhap_MaPhieuNhap">
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+      <End Role="DongPhieuNhap" EntitySet="DongPhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DongPhieuXuat_MaLo" Association="Self.FK_DongPhieuXuat_MaLo">
+      <End Role="LoHang" EntitySet="LoHang" />
+      <End Role="DongPhieuXuat" EntitySet="DongPhieuXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DongPhieuXuat_MaPhieuXuat" Association="Self.FK_DongPhieuXuat_MaPhieuXuat">
+      <End Role="PhieuXuat" EntitySet="PhieuXuat" />
+      <End Role="DongPhieuXuat" EntitySet="DongPhieuXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoHang_DongPhieuNhap" Association="Self.FK_LoHang_DongPhieuNhap">
+      <End Role="DongPhieuNhap" EntitySet="DongPhieuNhap" />
+      <End Role="LoHang" EntitySet="LoHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoHang_MaHang" Association="Self.FK_LoHang_MaHang">
+      <End Role="MatHang" EntitySet="MatHang" />
+      <End Role="LoHang" EntitySet="LoHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MatHang_MaLoai" Association="Self.FK_MatHang_MaLoai">
+      <End Role="LoaiHang" EntitySet="LoaiHang" />
+      <End Role="MatHang" EntitySet="MatHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhanVien_MaNguoiQL" Association="Self.FK_NhanVien_MaNguoiQL">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="NhanVien1" EntitySet="NhanVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhap_MaNCC" Association="Self.FK_PhieuNhap_MaNCC">
+      <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhap_MaNV" Association="Self.FK_PhieuNhap_MaNV">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuXuat_MaNV" Association="Self.FK_PhieuXuat_MaNV">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuXuat" EntitySet="PhieuXuat" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

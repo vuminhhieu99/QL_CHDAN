@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93B5BD0A-5F26-404C-ADBA-14ABCE8D3706}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>S4_N14_VuMinhHieu</RootNamespace>
+    <AssemblyName>S4_N14_VuMinhHieu</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.4, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Bunifu_UI_v1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fDanhMuc.Designer.cs">
+      <DependentUpon>fDanhMuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fNghiepVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fNghiepVu.Designer.cs">
+      <DependentUpon>fNghiepVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Banner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Banner.Designer.cs">
+      <DependentUpon>Banner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ControllerMatHang.cs" />
+    <Compile Include="UserControls\ControllerNCC.cs" />
+    <Compile Include="UserControls\ControllerNghiepVu.cs" />
+    <Compile Include="UserControls\ControllerNhanVien.cs" />
+    <Compile Include="UserControls\Controller.cs" />
+    <Compile Include="UserControls\ControllerPhieuNhap.cs" />
+    <Compile Include="UserControls\ControllerPhieuXuat.cs" />
+    <Compile Include="UserControls\UCMatHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCMatHang.Designer.cs">
+      <DependentUpon>UCMatHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCNhaCungCap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCNhaCungCap.Designer.cs">
+      <DependentUpon>UCNhaCungCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCNhanVien.Designer.cs">
+      <DependentUpon>UCNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCPhieuNhap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCPhieuNhap.Designer.cs">
+      <DependentUpon>UCPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCPhieuXuat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCPhieuXuat.Designer.cs">
+      <DependentUpon>UCPhieuXuat.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="fDanhMuc.resx">
+      <DependentUpon>fDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fNghiepVu.resx">
+      <DependentUpon>fNghiepVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Banner.resx">
+      <DependentUpon>Banner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCMatHang.resx">
+      <DependentUpon>UCMatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCNhaCungCap.resx">
+      <DependentUpon>UCNhaCungCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCNhanVien.resx">
+      <DependentUpon>UCNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCPhieuNhap.resx">
+      <DependentUpon>UCPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCPhieuXuat.resx">
+      <DependentUpon>UCPhieuXuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\S4_N14_VuMinhHieu.UserControls.UCNhanVien.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="image\add-bold.png" />
+    <Content Include="image\arrow-button-left-3.png" />
+    <Content Include="image\arrow-button-left.png" />
+    <Content Include="image\arrow-button-right.png" />
+    <Content Include="image\arrow-button-up.png" />
+    <Content Include="image\icon_MatHang.png" />
+    <Content Include="image\icon_SoLuongTon.png" />
+    <Content Include="image\icon_edit.png" />
+    <Content Include="image\icon_goback.png" />
+    <None Include="image\icon_money.png" />
+    <Content Include="image\icon_search.png" />
+    <Content Include="image\icon_refresh.png" />
+    <Content Include="image\icon_NhanVien.png" />
+    <Content Include="image\icon_delete.png" />
+    <Content Include="image\banner3.png" />
+    <Content Include="image\gradientBackground.jpg" />
+    <Content Include="image\gradientBackground2.jpg" />
+    <Content Include="image\grandientBackgound3.png" />
+    <Content Include="image\green_Arrow.png" />
+    <Content Include="image\icon_update.png" />
+    <Content Include="image\linear_gradient.png" />
+    <Content Include="image\logo.ico" />
+    <Content Include="image\logo.png" />
+    <Content Include="image\icon_add1.png" />
+    <Content Include="image\icon_view.png" />
+    <Content Include="image\icon_confirm.png" />
+    <Content Include="image\menu_menu.png" />
+    <Content Include="image\icon_ThongKe.png" />
+    <Content Include="image\icon_excel.png" />
+    <Content Include="image\navigation-menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
