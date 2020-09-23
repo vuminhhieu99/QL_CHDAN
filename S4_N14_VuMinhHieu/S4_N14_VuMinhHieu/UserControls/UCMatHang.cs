@@ -150,7 +150,7 @@ namespace S4_N14_VuMinhHieu.UserControls
             var donGia = "null"; if (tb_DonGia.Text != "") { donGia = tb_DonGia.Text; }
             var maLoai = cb_MaLoai.Text; if (maLoai == "") { maLoai = "null"; }
             
-            if (addLH == true)
+            if (addMH == true)
             {
                 try
                 {
@@ -166,7 +166,7 @@ namespace S4_N14_VuMinhHieu.UserControls
             {
                 try
                 {
-                    string query = "Update dbo.MatHang set TenHang = " + tenHang + ", DvTinh = " + dvt + ", DonGia = " + donGia + ", MaLoai = " + maLoai + " where MaPhieuNhap = " + maHang;
+                    string query = "Update dbo.MatHang set TenHang = " + tenHang + ", DvTinh = " + dvt + ", DonGia = " + donGia + ", MaLoai = " + maLoai + " where MaHang = " + maHang;
                     ctrl.Update(query);
                 }
                 catch (Exception ex)

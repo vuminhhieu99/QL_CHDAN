@@ -241,7 +241,7 @@ namespace S4_N14_VuMinhHieu.UserControls
             var gioitinhNV = "null";
             if (rb_Male.Checked) { gioitinhNV = "1"; }
             if (rb_Male.Checked) { gioitinhNV = "0"; }
-            var ngaysinhNV = "null"; if (tb_ngaySinh.Text != "") { ngaysinhNV = "'" + tb_tenNV.Text + "'"; }
+            var ngaysinhNV = "null"; if (tb_ngaySinh.Text != "") { ngaysinhNV = "'" + tb_ngaySinh.Text + "'"; }
             var sdtNV = "null"; if (tb_SDT.Text != "") { sdtNV = "N'" + tb_SDT.Text + "'"; }
             var calamNV = "null"; if (tb_CaLam.Text != "") { calamNV = "N'" + tb_CaLam.Text + "'"; }
             var luongNV = tb_Luong.Text; if (luongNV == "") { luongNV = "null"; }
